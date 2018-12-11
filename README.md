@@ -1,6 +1,6 @@
 <h2>CyberNewsReport</h2>
 <h4>Authored by: r_panov on 12/10/2018</h4>
-<h5>'momentary masters of a fraction of a dot' - Carl Sagan'</h5>
+<h5>'momentary masters of a fraction of a dot' - Carl Sagan</h5><br>
 
 <p>
 The CyberNews NewsReport is a command line tool that can be used to quickly display the latest stories from three of the major cyber news outlets: Bleeping Computer, Krebs on Security, and Vice Motherboard.<br><br>
