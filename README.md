@@ -1,4 +1,4 @@
-<h2>CyberNewsReport<h2>
+<h2>CyberNewsReport</h2>
 <h4>Authored by: r_panov on 12/10/2018</h4>
 <h4>'momentary masters of a fraction of a dot' - Carl Sagan'</h4>
 
