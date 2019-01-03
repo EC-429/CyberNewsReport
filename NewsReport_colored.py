@@ -9,7 +9,7 @@ def bleep():
     crawler = r.html.find('#nlatest', first=True)           # crawl through request
     links = crawler.absolute_links                          # find article links
 
-    print(Fore.BLUE + '[+] Bleeping Computer')                          # Display results
+    print(Fore.BLUE + '[+_._+] Bleeping Computer')                          # Display results
     for i in links:
         print(f'\t[-] Article: {i}')
 
@@ -19,7 +19,7 @@ def krebs():
     crawler = r.html.find('#recent-posts-3', first=True)    # crawl through request
     links = crawler.absolute_links                          # find article links
 
-    print(Fore.LIGHTBLACK_EX + '[+] Krebs')                                      # Display results
+    print(Fore.LIGHTBLACK_EX + '[+_._+] Krebs')                                      # Display results
     for i in links:
         print(f'\t[-] Article: {i}')
 
@@ -31,7 +31,7 @@ def motherboard():
     for x in crawler:
         links.append(x)                                                     # for all links, add to empty list
 
-    print(Fore.MAGENTA + '[+] Motherboard')                                                # Display results
+    print(Fore.MAGENTA + '[+_._+] Motherboard')                                                # Display results
     for y in links:
         if "/en_us/article/" in y:                                          # print all article
             print(f'\t[-] Article: {y}')
