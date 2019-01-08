@@ -6,6 +6,7 @@
 The CyberNews NewsReport is a command line tool that can be used to quickly display the latest stories from five of the major cyber news outlets: Bleeping Computer, cyberscoop, Krebs on Security, Vice Motherboard, and ZDNet.<br><br>
 
 This project is coded in python3 and requires the following packages:<br>
+`argparse          --> installation: pip3 install argparse` <br>
 `colorama          --> installation: pip3 install colorama` <br>
 `requests           --> installation: pip3 install requests`<br>
 `beautifulsoup4     --> installatio: pip3 install beautifulsoup4` <br><br>
