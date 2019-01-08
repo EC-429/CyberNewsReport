@@ -1,7 +1,7 @@
 # 1. Imports
 import argparse
 import requests
-from colorama import Style, Back
+from colorama import Style, Back, Fore
 from bs4 import BeautifulSoup   # Documentation: crummy.com/software/BeautifulSoup/bs4/doc/
 
 
@@ -57,7 +57,7 @@ def krebs():
     krebs_cntr = 0
     for items in krebs_soup.find_all("a", rel='bookmark'):          # search loop
         print(Back.LIGHTBLACK_EX + f' {krebs_cntr} ' + Style.RESET_ALL + f"\tTitle: {items.get_text().strip()}")   # article title
-        print(Back.WHITE + ' Link: ' + Style.RESET_ALL + f"\t{items.get('href')}")                         # article link
+        print(Back.WHITE + Fore.BLACK + ' Link: ' + Style.RESET_ALL + f"\t{items.get('href')}")                         # article link
         krebs_cntr += 1
     print('\n')
     # ---------------------------------------------------------------
@@ -85,7 +85,7 @@ def motherboard():
     for x in mother_titles:
         print(Back.MAGENTA + f' {mother_cntr} ' + Style.RESET_ALL + f'\tTitle: {x}')   # print title for each item
         # print link using counter as iterator
-        print(Back.WHITE + ' Link: ' +
+        print(Back.WHITE + Fore.BLACK + ' Link: ' +
               Style.RESET_ALL +
               f'\thttps://motherboard.vice.com/en_us/topic/hacking{mother_links[mother_cntr]}')
         mother_cntr += 1
