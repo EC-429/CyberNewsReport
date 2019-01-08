@@ -105,7 +105,7 @@ def zdnet():
     zdnet_cntr = 0
     for items in bleep_soup2.find_all('a', class_='thumb'):                         # search loop
         print(Back.LIGHTRED_EX + f' {zdnet_cntr} ' + Style.RESET_ALL + f"\tTitle: {items.get('title')}")                                       # print titles
-        print(Back.BLACK + ' Link ' + Style.RESET_ALL + f"\thttps://www.zdnet.com/topic/security{items.get('href')}")     # print link
+        print(Back.BLACK + ' Link: ' + Style.RESET_ALL + f"\thttps://www.zdnet.com/topic/security{items.get('href')}")     # print link
         zdnet_cntr += 1
     print('\n')
 
