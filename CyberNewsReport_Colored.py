@@ -24,7 +24,8 @@ def bleep():
     print('Bleeping Computer Latest Cybersecurity News')
     bleep_cntr = 0                                                        # counter start at 0
     for x in bleep_titles:
-        print(Back.BLUE + f' {bleep_cntr} ' + Style.RESET_ALL + f'\tTitle: {x}')                                        # print title for each item
+        title = x.split("Image")
+        print(Back.BLUE + f' {bleep_cntr} ' + Style.RESET_ALL + f'\tTitle: {title[0]}')                                        # print title for each item
         print(Back.LIGHTBLUE_EX + ' Link: ' + Style.RESET_ALL + f'\t{bleep_links[bleep_cntr]}')                         # print link using counter as iterator
         bleep_cntr += 1                                                   # counter iteration interval
     print('\n')
@@ -87,7 +88,7 @@ def motherboard():
         # print link using counter as iterator
         print(Back.WHITE + Fore.BLACK + ' Link: ' +
               Style.RESET_ALL +
-              f'\thttps://motherboard.vice.com/en_us/topic/hacking{mother_links[mother_cntr]}')
+              f'\thttps://motherboard.vice.com{mother_links[mother_cntr]}')
         mother_cntr += 1
     print('\n')
     # ---------------------------------------------------------------
@@ -105,7 +106,7 @@ def zdnet():
     zdnet_cntr = 0
     for items in bleep_soup2.find_all('a', class_='thumb'):                         # search loop
         print(Back.LIGHTRED_EX + f' {zdnet_cntr} ' + Style.RESET_ALL + f"\tTitle: {items.get('title')}")                                       # print titles
-        print(Back.BLACK + ' Link: ' + Style.RESET_ALL + f"\thttps://www.zdnet.com/topic/security{items.get('href')}")     # print link
+        print(Back.BLACK + ' Link: ' + Style.RESET_ALL + f"\thttps://www.zdnet.com{items.get('href')}")     # print link
         zdnet_cntr += 1
     print('\n')
 
