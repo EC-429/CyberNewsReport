@@ -5,7 +5,7 @@ from colorama import Style, Back, Fore
 from bs4 import BeautifulSoup   # Documentation: crummy.com/software/BeautifulSoup/bs4/doc/
 
 
-# 2.2. bleeping computer security news function
+# 2.1. bleeping computer security news function
 def bleep():
     bleep_url = 'https://www.bleepingcomputer.com/'
     bleep_page = requests.get(bleep_url)                            # make request to url
@@ -32,7 +32,7 @@ def bleep():
     # ---------------------------------------------------------------
 
 
-# 2.5. cyberscoop security news function
+# 2.2. cyberscoop security news function
 def cyberscoop():
     cyberscoop_url = 'https://www.cyberscoop.com/'                              # url
     cyberscoop_page = requests.get(cyberscoop_url)                              # page request
@@ -48,7 +48,7 @@ def cyberscoop():
     # ---------------------------------------------------------------
 
 
-# 2.1. krebs on security news function
+# 2.3. krebs on security news function
 def krebs():
     krebs_url = 'https://krebsonsecurity.com'
     krebs_page = requests.get(krebs_url)                            # make request to url
@@ -64,7 +64,7 @@ def krebs():
     # ---------------------------------------------------------------
 
 
-# 2.3. motherboard security news function
+# 2.4. motherboard security news function
 def motherboard():
     mother_url = 'https://motherboard.vice.com/en_us/topic/hacking'             # url
     mother_page = requests.get(mother_url)                                      # page request
@@ -94,7 +94,27 @@ def motherboard():
     # ---------------------------------------------------------------
 
 
-# 2.4. zdnet security news function
+# 2.5. Kapersky Securelist security news function
+def securelist():
+    seclist_url = 'https://securelist.com/'                                       # url
+    seclist_page = requests.get(seclist_url)                                      # page request
+    seclist_soup = BeautifulSoup(seclist_page.text, 'html.parser')                # bs4 digest
+
+    print('Securelist Latest Cyber Security News')
+    seclist_cntr = 0
+    for items in seclist_soup.find_all(class_='entry-title'):                     # search loop
+        a_tag = items.a                                                           # scrape a tags
+        a_title = a_tag.get('title')                                              # scrape title
+        a_link = a_tag.get('href')                                                # scrape links
+        print(Back.GREEN + f' {seclist_cntr} ' + Style.RESET_ALL + f'\tTitle: {a_title}')
+        print(Back.RED + ' Link: ' + Style.RESET_ALL + f'\t{a_link}')
+        seclist_cntr += 1
+    print('\n')
+
+    # ---------------------------------------------------------------
+
+
+# 2.6. zdnet security news function
 def zdnet():
     zdnet_url = 'https://www.zdnet.com/topic/security'                          # url
     zdnet_page = requests.get(zdnet_url)                                        # page request
@@ -105,7 +125,7 @@ def zdnet():
     print('ZDNet Latest Cyber Security News')
     zdnet_cntr = 0
     for items in bleep_soup2.find_all('a', class_='thumb'):                         # search loop
-        print(Back.LIGHTRED_EX + f' {zdnet_cntr} ' + Style.RESET_ALL + f"\tTitle: {items.get('title')}")                                       # print titles
+        print(Back.LIGHTRED_EX + f' {zdnet_cntr} ' + Style.RESET_ALL + f"\tTitle: {items.get('title')}")    # print titles
         print(Back.BLACK + ' Link: ' + Style.RESET_ALL + f"\thttps://www.zdnet.com{items.get('href')}")     # print link
         zdnet_cntr += 1
     print('\n')
@@ -116,13 +136,12 @@ def zdnet():
 # 3. main argument function
 def main():
     # 3.1. Argparse help menu: display help menu
-    parser = argparse.ArgumentParser(description='Description......')
+    parser = argparse.ArgumentParser(description='CyberNews Report scrapes many outlets for their most recent stories')
     # 3.2. define flags
     parser.add_argument(
                         "--outlet",
-                        choices=['BleepingComputer', 'cyberscoop', 'Krebs', 'Motherboard', 'ZDNet', 'All'],
-                        type=str,
-                        help="Enter a news outlet"
+                        choices=['BleepingComputer', 'cyberscoop', 'Krebs', 'Motherboard', 'Securelist', 'ZDNet', 'All'],
+                        type=str
                         )
     # 3.3. save input
     args = parser.parse_args()
@@ -131,23 +150,25 @@ def main():
     # function decision tree, based on input
     if x == 'bleepingcomputer':
         bleep()
+    elif x == 'cyberscoop':
+        cyberscoop()
     elif x == 'krebs':
         krebs()
     elif x == 'motherboard':
         motherboard()
+    elif x == 'securelist':
+        securelist()
     elif x == 'zdnet':
         zdnet()
-    elif x == 'cyberscoop':
-        cyberscoop()
     elif x == 'all':
         bleep()
         cyberscoop()
         krebs()
         motherboard()
+        securelist()
         zdnet()
     else:
         print('Ooops! Must be smarter than the options menu to get the news. Try the -h flag.')
-
 
 # 4. Call initial function in chain
 main()
