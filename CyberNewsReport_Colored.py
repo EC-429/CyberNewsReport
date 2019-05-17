@@ -8,10 +8,10 @@ from bs4 import BeautifulSoup   # Documentation: crummy.com/software/BeautifulSo
 # 2.1. bleeping computer security news function
 def bleep():
     bleep_url = 'https://www.bleepingcomputer.com/'
-    bleep_page = requests.get(bleep_url)                            # make request to url
-    bleep_soup = BeautifulSoup(bleep_page.text, 'html.parser')      # bs4 digest
-    bleep_latest_news = str(bleep_soup.find_all(class_='tab-pane', id='nlatest'))     # save latest news text as variable
-    bleep_soup2 = BeautifulSoup(bleep_latest_news, 'html.parser')         # gather text from saved variable
+    bleep_page = requests.get(bleep_url)                                                # make request to url
+    bleep_soup = BeautifulSoup(bleep_page.text, 'html.parser')                          # bs4 digest
+    bleep_latest_news = str(bleep_soup.find_all(class_='tab-pane', id='nlatest'))       # save latest news text as variable
+    bleep_soup2 = BeautifulSoup(bleep_latest_news, 'html.parser')                       # gather text from saved variable
 
     bleep_titles = []                                               # empty lists to store titles
     bleep_links = []                                                # empty list to store links
@@ -22,12 +22,12 @@ def bleep():
         bleep_links.append(items.get('href'))                       # append to list
 
     print('Bleeping Computer Latest Cybersecurity News')
-    bleep_cntr = 0                                                        # counter start at 0
+    bleep_cntr = 0                                                                                  # counter start at 0
     for x in bleep_titles:
         title = x.split("Image")
-        print(Back.BLUE + f' {bleep_cntr} ' + Style.RESET_ALL + f'\tTitle: {title[0]}')                                        # print title for each item
-        print(Back.LIGHTBLUE_EX + ' Link: ' + Style.RESET_ALL + f'\t{bleep_links[bleep_cntr]}')                         # print link using counter as iterator
-        bleep_cntr += 1                                                   # counter iteration interval
+        print(Back.BLUE + f' {bleep_cntr} ' + Style.RESET_ALL + f'\tTitle: {title[0]}')             # print title for each item
+        print(Back.LIGHTBLUE_EX + ' Link: ' + Style.RESET_ALL + f'\t{bleep_links[bleep_cntr]}')     # print link using counter as iterator
+        bleep_cntr += 1                                                                             # counter iteration interval
     print('\n')
     # ---------------------------------------------------------------
 
@@ -51,13 +51,13 @@ def cyberscoop():
 # 2.3. krebs on security news function
 def krebs():
     krebs_url = 'https://krebsonsecurity.com'
-    krebs_page = requests.get(krebs_url)                            # make request to url
-    krebs_soup = BeautifulSoup(krebs_page.text, 'html.parser')      # bs4 digest
+    krebs_page = requests.get(krebs_url)                                        # make request to url
+    krebs_soup = BeautifulSoup(krebs_page.text, 'html.parser')                  # bs4 digest
 
     print('Krebs on Security Latest Cybersecurity News')
     krebs_cntr = 0
-    for items in krebs_soup.find_all("a", rel='bookmark'):          # search loop
-        print(Back.LIGHTBLACK_EX + f' {krebs_cntr} ' + Style.RESET_ALL + f"\tTitle: {items.get_text().strip()}")   # article title
+    for items in krebs_soup.find_all("a", rel='bookmark'):                                                              # search loop
+        print(Back.LIGHTBLACK_EX + f' {krebs_cntr} ' + Style.RESET_ALL + f"\tTitle: {items.get_text().strip()}")        # article title
         print(Back.WHITE + Fore.BLACK + ' Link: ' + Style.RESET_ALL + f"\t{items.get('href')}")                         # article link
         krebs_cntr += 1
     print('\n')

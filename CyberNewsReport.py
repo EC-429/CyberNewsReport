@@ -9,14 +9,14 @@ def bleep():
     bleep_url = 'https://www.bleepingcomputer.com/'
     bleep_page = requests.get(bleep_url)                            # make request to url
     bleep_soup = BeautifulSoup(bleep_page.text, 'html.parser')      # bs4 digest
-    bleep_latest_news = str(bleep_soup.find_all(class_='tab-pane', id='nlatest'))     # save latest news text as variable
-    bleep_soup2 = BeautifulSoup(bleep_latest_news, 'html.parser')         # gather text from saved variable
+    bleep_latest_news = str(bleep_soup.find_all(class_='tab-pane', id='nlatest'))       # save latest news text as variable
+    bleep_soup2 = BeautifulSoup(bleep_latest_news, 'html.parser')                       # gather text from saved variable
 
     bleep_titles = []                                               # empty lists to store titles
     bleep_links = []                                                # empty list to store links
 
     for items in bleep_soup2.find_all('img'):                       # search through text for title
-        bleep_titles.append(items.get('alt'))                    # append list
+        bleep_titles.append(items.get('alt'))                       # append list
     for items in bleep_soup2.find_all('a', class_='nmic'):          # search through text for link
         bleep_links.append(items.get('href'))                       # append to list
 
