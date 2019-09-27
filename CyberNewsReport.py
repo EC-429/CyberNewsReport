@@ -49,7 +49,7 @@ def krebs():
     krebs_page = requests.get(krebs_url)                            # make request to url
     krebs_soup = BeautifulSoup(krebs_page.text, 'html.parser')      # bs4 digest
 
-    for items in krebs_soup.find_all("a", rel='bookmark'):          # search loop
+    for items in krebs_soup.find_all('a', rel='bookmark'):          # search loop
         print(f"Title: {items.get_text()}")                         # article title
         print(f"Link: {items.get('href')}")                         # article link
 
@@ -62,23 +62,9 @@ def motherboard():
     mother_page = requests.get(mother_url)                                      # page request
     mother_soup = BeautifulSoup(mother_page.text, 'html.parser')                # bs4 digest
 
-    mother_titles = []                                                          # empty lists
-    mother_links = []
-
-    for items in mother_soup.find_all('a'):                                     # search loop
-        links = str(items.get('href'))                                          # find links
-
-        if '/en_us/article/' in links:                                          # filter links
-            mother_links.append(links)                                          # append links to list
-            title_split = str(links).split('/')                                 # strip/split titles
-            mother_titles.append(str(title_split[4]).replace('-', ' '))         # append titles to list
-
-    cntr = 0                                                                    # counter start at 0
-    for x in mother_titles:
-        print(f'Title: {x}')                                                    # print title for each item
-        # print link using counter as iterator
-        print(f'Link: https://motherboard.vice.com{mother_links[cntr]}')
-        cntr += 1
+    for items in mother_soup.find_all('a', class_='topics-card__heading-link'):
+        print(f"Title: {items.get_text().strip()}")                             # print title
+        print(f"Link: {items.get('href')}")                                     # print link
 
     # ---------------------------------------------------------------
 
@@ -150,6 +136,7 @@ def main():
         zdnet()
     else:
         print('Ooops! Must be smarter than the options menu to get the news. Try the -h flag.')
+
 
 # 4. Call initial function in chain
 main()

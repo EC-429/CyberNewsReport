@@ -70,27 +70,14 @@ def motherboard():
     mother_page = requests.get(mother_url)                                      # page request
     mother_soup = BeautifulSoup(mother_page.text, 'html.parser')                # bs4 digest
 
-    mother_titles = []                                                          # empty lists
-    mother_links = []
-
-    for items in mother_soup.find_all('a'):                                     # search loop
-        links = str(items.get('href'))                                          # find links
-
-        if '/en_us/article/' in links:                                          # filter links
-            mother_links.append(links)                                          # append links to list
-            title_split = str(links).split('/')                                 # strip/split titles
-            mother_titles.append(str(title_split[4]).replace('-', ' '))         # append titles to list
-
     print('MOTHERBOARD Latest Cybersecurity News')
-    mother_cntr = 0                                                                    # counter start at 0
-    for x in mother_titles:
-        print(Back.MAGENTA + f' {mother_cntr} ' + Style.RESET_ALL + f'\tTitle: {x}')   # print title for each item
-        # print link using counter as iterator
-        print(Back.WHITE + Fore.BLACK + ' Link: ' +
-              Style.RESET_ALL +
-              f'\thttps://motherboard.vice.com{mother_links[mother_cntr]}')
+    mother_cntr = 0
+    for items in mother_soup.find_all('a', class_='topics-card__heading-link'):
+        print(Back.LIGHTBLACK_EX + f' {mother_cntr} ' + Style.RESET_ALL + f"\tTitle: {items.get_text().strip()}")       # article title
+        print(Back.WHITE + Fore.BLACK + ' Link: ' + Style.RESET_ALL + f"\t{items.get('href')}")                         # print link
         mother_cntr += 1
     print('\n')
+
     # ---------------------------------------------------------------
 
 
@@ -169,6 +156,7 @@ def main():
         zdnet()
     else:
         print('Ooops! Must be smarter than the options menu to get the news. Try the -h flag.')
+
 
 # 4. Call initial function in chain
 main()
