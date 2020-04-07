@@ -3,12 +3,14 @@ import argparse
 import requests
 from bs4 import BeautifulSoup   # Documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/#kinds-of-filters
 
+headers = {'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 6.0;en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6)'}  # User Agent
+
 
 # 2.1. bleeping computer security news function
 def bleep():
     bleep_url = 'https://www.bleepingcomputer.com/'
-    bleep_page = requests.get(bleep_url)                            # make request to url
-    bleep_soup = BeautifulSoup(bleep_page.text, 'html.parser')      # bs4 digest
+    bleep_page = requests.get(bleep_url, headers=headers)                               # make request to url
+    bleep_soup = BeautifulSoup(bleep_page.text, 'html.parser')                          # bs4 digest
     bleep_latest_news = str(bleep_soup.find_all(class_='tab-pane', id='nlatest'))       # save latest news text as variable
     bleep_soup2 = BeautifulSoup(bleep_latest_news, 'html.parser')                       # gather text from saved variable
 
@@ -33,7 +35,7 @@ def bleep():
 # 2.2. cyberscoop security news function
 def cyberscoop():
     cyberscoop_url = 'https://www.cyberscoop.com/'                              # url
-    cyberscoop_page = requests.get(cyberscoop_url)                              # page request
+    cyberscoop_page = requests.get(cyberscoop_url, headers=headers)                              # page request
     cyberscoop_soup = BeautifulSoup(cyberscoop_page.text, 'html.parser')        # bs4 digest
 
     for items in cyberscoop_soup.find_all('a', class_='article-thumb__title'):  # search loop
@@ -46,7 +48,7 @@ def cyberscoop():
 # 2.3. krebs on security news function
 def krebs():
     krebs_url = 'https://krebsonsecurity.com'
-    krebs_page = requests.get(krebs_url)                            # make request to url
+    krebs_page = requests.get(krebs_url, headers=headers)                            # make request to url
     krebs_soup = BeautifulSoup(krebs_page.text, 'html.parser')      # bs4 digest
 
     for items in krebs_soup.find_all('a', rel='bookmark'):          # search loop
@@ -59,7 +61,7 @@ def krebs():
 # 2.4. motherboard security news function
 def motherboard():
     mother_url = 'https://motherboard.vice.com/en_us/topic/hacking'             # url
-    mother_page = requests.get(mother_url)                                      # page request
+    mother_page = requests.get(mother_url, headers=headers)                                      # page request
     mother_soup = BeautifulSoup(mother_page.text, 'html.parser')                # bs4 digest
 
     for items in mother_soup.find_all('a', class_='topics-card__heading-link'):
@@ -72,7 +74,7 @@ def motherboard():
 # 2.5. Kapersky Securelist security news function
 def securelist():
     seclist_url = 'https://securelist.com/'                                       # url
-    seclist_page = requests.get(seclist_url)                                      # page request
+    seclist_page = requests.get(seclist_url, headers=headers)                                      # page request
     seclist_soup = BeautifulSoup(seclist_page.text, 'html.parser')                # bs4 digest
 
     for items in seclist_soup.find_all(class_='entry-title'):                     # search loop
@@ -88,7 +90,7 @@ def securelist():
 # 2.6. zdnet security news function
 def zdnet():
     zdnet_url = 'https://www.zdnet.com/topic/security'                          # url
-    zdnet_page = requests.get(zdnet_url)                                        # page request
+    zdnet_page = requests.get(zdnet_url, headers=headers)                                        # page request
     zdnet_soup = BeautifulSoup(zdnet_page.text, 'html.parser')                  # bs4 digest
     zdnet_latest_news = str(zdnet_soup.find_all('div', id='latest'))            # latest news text
     bleep_soup2 = BeautifulSoup(zdnet_latest_news, 'html.parser')               # bs4 digest of latest news
